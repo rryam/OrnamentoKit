@@ -1,6 +1,6 @@
 //
-//  File.swift
-//
+//  OrnamentoNotificationModifier.swift
+//  OrnamentoKit
 //
 //  Created by Rudrank Riyam on 28/02/24.
 //
@@ -8,12 +8,12 @@
 import SwiftUI
 
 extension View {
-  public func notification(for model: some OrnamentoNotificationProtocol) -> some View {
-    self.modifier(NotificationOrnamentModifier(model: model))
+  public func ornamentNotification(for model: some OrnamentoNotificationProtocol) -> some View {
+    self.modifier(OrnamentoNotificationModifier(model: model))
   }
 }
 
-public struct NotificationOrnamentModifier<ViewModel: OrnamentoNotificationProtocol>: ViewModifier {
+public struct OrnamentoNotificationModifier<ViewModel: OrnamentoNotificationProtocol>: ViewModifier {
   @ObservedObject var model: ViewModel
 
   public func body(content: Content) -> some View {
