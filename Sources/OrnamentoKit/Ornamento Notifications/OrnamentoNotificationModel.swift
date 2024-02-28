@@ -9,9 +9,15 @@ import SwiftUI
 
 public final class OrnamentoNotificationModel: OrnamentoNotificationProtocol {
   @Published public var notification: OrnamentoNotification?
-  @Published public var visibility: Visibility = .hidden
+  @Published public var visibility: Visibility
 
-  public var seconds: Int = 2
+  public var seconds: Int
+
+  public init(notification: OrnamentoNotification? = nil, visibility: Visibility = .hidden, seconds: Int = 2) {
+    self.notification = notification
+    self.visibility = visibility
+    self.seconds = seconds
+  }
 
   public func showNotification() {
     if notification != nil {
@@ -22,7 +28,7 @@ public final class OrnamentoNotificationModel: OrnamentoNotificationProtocol {
       dismissNotification()
     }
   }
-  
+
   public func dismissNotification() {
     Task {
       try await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
