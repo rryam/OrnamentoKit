@@ -8,6 +8,25 @@
 import SwiftUI
 
 extension View {
+
+  /// Adds a notification ornament to a view.
+  ///
+  /// This modifier attaches a `OrnamentoNotificationView` to the specified view, using the provided `OrnamentoNotificationModel`.
+  ///
+  /// Example:
+  /// ```swift
+  /// struct ContentView: View {
+  ///     @StateObject private var notificationModel = NotificationOrnamentModel()
+  ///
+  ///     var body: some View {
+  ///         SomeSpecificView()
+  ///             .notification(for: notificationModel)
+  ///     }
+  /// }
+  /// ```
+  ///
+  /// - Parameter model: The `OrnamentoNotificationModel` to use for the notification ornament.
+  /// - Returns: A modified view with the attached notification ornament.
   public func ornamentNotification(for model: some OrnamentoNotificationProtocol) -> some View {
     self.modifier(OrnamentoNotificationModifier(model: model))
   }
@@ -24,47 +43,5 @@ public struct OrnamentoNotificationModifier<ViewModel: OrnamentoNotificationProt
       .onChange(of: model.notification) {
         model.showNotification()
       }
-  }
-}
-
-struct OrnamentoNotificationView<ViewModel: OrnamentoNotificationProtocol>: View {
-  @ObservedObject var model: ViewModel
-
-  var body: some View {
-    Group {
-      if let notification = model.notification {
-        OrnamentoNotificationItem(notification: notification)
-      }
-    }
-    .padding()
-    .padding(.horizontal)
-    .opacity(model.notification != nil ? 1.0 : 0.0)
-    .glassBackgroundEffect()
-  }
-}
-
-
-struct OrnamentoNotificationItem: View {
-  var notification: OrnamentoNotification
-
-  var body: some View {
-    HStack {
-      Image(systemName: notification.type.icon)
-        .foregroundStyle(notification.type.color)
-
-      VStack(alignment: .leading) {
-        Text(notification.title)
-          .font(.headline)
-          .foregroundColor(.primary)
-
-        if let message = notification.message {
-          Text(message)
-            .font(.subheadline)
-            .foregroundColor(.secondary)
-        }
-      }
-
-      Spacer()
-    }
   }
 }
