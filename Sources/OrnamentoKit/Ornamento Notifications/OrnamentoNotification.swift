@@ -12,4 +12,11 @@ public struct OrnamentoNotification: Identifiable, Equatable {
   public var title: String
   public var message: String?
   public var type: OrnamentoNotificationType
+
+  public init(id: UUID = UUID(), title: String, message: String? = nil, type: OrnamentoNotificationType) {
+    self.id = id
+    self.title = title
+    self.message = message
+    self.type = type
+  }
 }
