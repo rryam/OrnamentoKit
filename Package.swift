@@ -4,20 +4,13 @@
 import PackageDescription
 
 let package = Package(
-    name: "OrnamentoKit",
-    products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "OrnamentoKit",
-            targets: ["OrnamentoKit"]),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "OrnamentoKit"),
-        .testTarget(
-            name: "OrnamentoKitTests",
-            dependencies: ["OrnamentoKit"]),
-    ]
+  name: "OrnamentoKit",
+  platforms: [.visionOS(.v1)],
+  products: [
+    .library(name: "OrnamentoKit", targets: ["OrnamentoKit"]),
+  ],
+  targets: [
+    .target(name: "OrnamentoKit"),
+    .testTarget(name: "OrnamentoKitTests", dependencies: ["OrnamentoKit"]),
+  ]
 )
