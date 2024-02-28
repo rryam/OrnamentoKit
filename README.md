@@ -5,6 +5,8 @@ While listening to Memento Mori by The Weeknd, and working with Ornaments in vis
 
 The first method is toast like notification ornament that displays on the top of the window.
 
+![](https://github.com/rryam/OrnamentoKit/blob/main/Simulator%20Screenshot%20-%20Apple%20Vision%20Pro%20-%202024-02-28%20at%2019.14.19.png)
+
 ## `ornamentNotification`
 Here's an example of how to use the `ornamentNotification` modifier with the provided `OrnamentoNotificationModel`:
 
