@@ -18,8 +18,6 @@ struct OrnamentoNotificationView<ViewModel: OrnamentoNotificationProtocol>: View
     }
     .padding()
     .padding(.horizontal)
-    .opacity(model.notification != nil ? 1.0 : 0.0)
-    .glassBackgroundEffect()
   }
 }
 

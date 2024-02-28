@@ -39,6 +39,8 @@ public struct OrnamentoNotificationModifier<ViewModel: OrnamentoNotificationProt
     content
       .ornament(visibility: model.visibility, attachmentAnchor: .scene(.top), ornament: {
         OrnamentoNotificationView(model: model)
+          .opacity(model.notification != nil ? 1.0 : 0.0)
+          .glassBackgroundEffect()
       })
       .onChange(of: model.notification) {
         model.showNotification()
