@@ -5,10 +5,16 @@
 //  Created by Rudrank Riyam on 28/02/24.
 //
 
+import Observation
 import SwiftUI
 
+@available(macOS 14.0, *)
 struct OrnamentoNotificationView<ViewModel: OrnamentoNotificationProtocol>: View {
-  @ObservedObject var model: ViewModel
+  @Bindable var model: ViewModel
+
+  init(model: ViewModel) {
+    self.model = model
+  }
 
   var body: some View {
     Group {
@@ -21,6 +27,7 @@ struct OrnamentoNotificationView<ViewModel: OrnamentoNotificationProtocol>: View
   }
 }
 
+@available(macOS 14.0, *)
 struct OrnamentoNotificationItem: View {
   var notification: OrnamentoNotification
 

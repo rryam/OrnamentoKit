@@ -5,11 +5,15 @@
 //  Created by Rudrank Riyam on 28/02/24.
 //
 
+import Observation
 import SwiftUI
 
+@available(macOS 14.0, *)
+@Observable
+@MainActor
 public final class OrnamentoNotificationModel: OrnamentoNotificationProtocol {
-  @Published public var notification: OrnamentoNotification?
-  @Published public var visibility: Visibility
+  public var notification: OrnamentoNotification?
+  public var visibility: Visibility
 
   public var seconds: Int
 
@@ -30,9 +34,9 @@ public final class OrnamentoNotificationModel: OrnamentoNotificationProtocol {
   }
 
   public func dismissNotification() {
-    Task {
-      try await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
-      self.notification = nil
+    Task { @MainActor in
+      try await Task.sleep(nanoseconds: UInt64(seconds) * 1_000_000_000)
+      notification = nil
       visibility = .hidden
     }
   }

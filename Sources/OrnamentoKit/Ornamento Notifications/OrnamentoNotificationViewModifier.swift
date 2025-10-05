@@ -5,8 +5,10 @@
 //  Created by Rudrank Riyam on 28/02/24.
 //
 
+import Observation
 import SwiftUI
 
+@available(macOS 14.0, *)
 extension View {
 
   /// Adds a notification ornament to a view.
@@ -32,10 +34,16 @@ extension View {
   }
 }
 
+@available(macOS 14.0, *)
 public struct OrnamentoNotificationModifier<ViewModel: OrnamentoNotificationProtocol>: ViewModifier {
-  @ObservedObject var model: ViewModel
+  @Bindable var model: ViewModel
+
+  public init(model: ViewModel) {
+    self.model = model
+  }
 
   public func body(content: Content) -> some View {
+#if os(visionOS)
     content
       .ornament(visibility: model.visibility, attachmentAnchor: .scene(.top), ornament: {
         OrnamentoNotificationView(model: model)
@@ -45,5 +53,8 @@ public struct OrnamentoNotificationModifier<ViewModel: OrnamentoNotificationProt
       .onChange(of: model.notification) {
         model.showNotification()
       }
+#else
+    content
+#endif
   }
 }

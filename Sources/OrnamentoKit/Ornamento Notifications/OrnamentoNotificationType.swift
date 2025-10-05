@@ -14,6 +14,7 @@ public enum OrnamentoNotificationType {
   case info
 }
 
+@available(macOS 10.15, *)
 extension OrnamentoNotificationType {
   public var color: Color {
     switch self {
