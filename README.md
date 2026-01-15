@@ -1,5 +1,7 @@
 
 # OrnamentoKit
+[![Star History Chart](https://api.star-history.com/svg?repos=rryam/OrnamentoKit&type=Date)](https://star-history.com/#rryam/OrnamentoKit&Date)
+
 
 While listening to Memento Mori by The Weeknd, and working with Ornaments in visionOS, I decided to create **OrnamentoKit** that will have everything related to ornaments!
 
