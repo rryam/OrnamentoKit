@@ -1,6 +1,5 @@
 
 # OrnamentoKit
-[![Star History Chart](https://api.star-history.com/svg?repos=rryam/OrnamentoKit&type=Date)](https://star-history.com/#rryam/OrnamentoKit&Date)
 
 
 While listening to Memento Mori by The Weeknd, and working with Ornaments in visionOS, I decided to create **OrnamentoKit** that will have everything related to ornaments!
@@ -34,3 +33,5 @@ notificationModel.notification = OrnamentoNotification(title: "Success!", messag
 The `ornamentNotification` modifier will display the notification at the top of the screen, with the specified title, message, and icon.
 
 The notification will automatically dismiss after 2 seconds. You can customize the seconds by setting the `seconds` property on the `notificationModel` instance.
+
+[![Star History Chart](https://api.star-history.com/svg?repos=rryam/OrnamentoKit&type=Date)](https://star-history.com/#rryam/OrnamentoKit&Date)
