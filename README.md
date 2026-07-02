@@ -15,7 +15,7 @@ Create an instance of `OrnamentoNotificationModel` and add the `ornamentNotifica
 
 ```swift
 struct ContentView: View {
-  @StateObject private var notificationModel = OrnamentoNotificationModel()
+  @State private var notificationModel = OrnamentoNotificationModel()
 
   var body: some View {
     Text("Hello, World!")

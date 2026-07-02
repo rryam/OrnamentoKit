@@ -18,11 +18,11 @@ extension View {
   /// Example:
   /// ```swift
   /// struct ContentView: View {
-  ///     @StateObject private var notificationModel = NotificationOrnamentModel()
+  ///     @State private var notificationModel = OrnamentoNotificationModel()
   ///
   ///     var body: some View {
-  ///         SomeSpecificView()
-  ///             .notification(for: notificationModel)
+  ///         Text("Hello, World!")
+  ///             .ornamentNotification(for: notificationModel)
   ///     }
   /// }
   /// ```

@@ -16,6 +16,7 @@ public final class OrnamentoNotificationModel: OrnamentoNotificationProtocol {
   public var visibility: Visibility
 
   public var seconds: Int
+  @ObservationIgnored private var dismissalTask: Task<Void, Never>?
 
   public init(notification: OrnamentoNotification? = nil, visibility: Visibility = .hidden, seconds: Int = 2) {
     self.notification = notification
@@ -34,10 +35,25 @@ public final class OrnamentoNotificationModel: OrnamentoNotificationProtocol {
   }
 
   public func dismissNotification() {
-    Task { @MainActor in
-      try await Task.sleep(nanoseconds: UInt64(seconds) * 1_000_000_000)
+    let notificationID = notification?.id
+    let seconds = UInt64(clamping: seconds)
+    let nanoseconds = min(seconds, UInt64.max / 1_000_000_000) * 1_000_000_000
+
+    dismissalTask?.cancel()
+    dismissalTask = Task { @MainActor [weak self, notificationID, nanoseconds] in
+      do {
+        try await Task.sleep(nanoseconds: nanoseconds)
+      } catch {
+        return
+      }
+
+      guard let self, !Task.isCancelled, notification?.id == notificationID else {
+        return
+      }
+
       notification = nil
       visibility = .hidden
+      dismissalTask = nil
     }
   }
 }
