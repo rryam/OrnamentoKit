@@ -47,7 +47,17 @@ public final class OrnamentoNotificationModel: OrnamentoNotificationProtocol {
         return
       }
 
-      guard let self, !Task.isCancelled, notification?.id == notificationID else {
+      guard let self, !Task.isCancelled else {
+        return
+      }
+
+      guard notification != nil else {
+        visibility = .hidden
+        dismissalTask = nil
+        return
+      }
+
+      guard notification?.id == notificationID else {
         return
       }
 

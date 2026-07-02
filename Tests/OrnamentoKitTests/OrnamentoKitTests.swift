@@ -34,6 +34,23 @@ final class OrnamentoKitTests: XCTestCase {
     XCTAssertEqual(model.notification, replacementNotification)
     XCTAssertEqual(model.visibility, .visible)
   }
+
+  @MainActor
+  func testDismissalHidesVisibilityWhenNotificationWasCleared() async throws {
+    let model = OrnamentoNotificationModel(seconds: 1)
+
+    model.notification = OrnamentoNotification(
+      title: "Done",
+      type: .success
+    )
+    model.showNotification()
+    model.notification = nil
+
+    try await Task.sleep(nanoseconds: 1_100_000_000)
+
+    XCTAssertNil(model.notification)
+    XCTAssertEqual(model.visibility, .hidden)
+  }
 }
 
 private struct ReadmeExampleContentView: View {
