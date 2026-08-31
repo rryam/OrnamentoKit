@@ -33,5 +33,3 @@ notificationModel.notification = OrnamentoNotification(title: "Success!", messag
 The `ornamentNotification` modifier will display the notification at the top of the screen, with the specified title, message, and icon.
 
 The notification will automatically dismiss after 2 seconds. You can customize the seconds by setting the `seconds` property on the `notificationModel` instance.
-
-[![Star History Chart](https://api.star-history.com/svg?repos=rryam/OrnamentoKit&type=Date)](https://star-history.com/#rryam/OrnamentoKit&Date)
